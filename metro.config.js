@@ -1,11 +1,26 @@
-const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
+const path = require('path');
+const { getDefaultConfig } = require('@react-native/metro-config');
+const { withUniwindConfig } = require('uniwind/metro');
 
-/**
- * Metro configuration
- * https://reactnative.dev/docs/metro
- *
- * @type {import('@react-native/metro-config').MetroConfig}
- */
-const config = {};
+const config = getDefaultConfig(__dirname);
 
-module.exports = mergeConfig(getDefaultConfig(__dirname), config);
+const expoStub = path.resolve(__dirname, 'src/stubs/expo-file-system.js');
+const originalResolveRequest = config.resolver?.resolveRequest;
+
+config.resolver.resolveRequest = (context, moduleName, platform) => {
+  if (
+    moduleName === 'expo-file-system' ||
+    moduleName.startsWith('expo-modules-core')
+  ) {
+    return { filePath: expoStub, type: 'sourceFile' };
+  }
+  if (originalResolveRequest) {
+    return originalResolveRequest(context, moduleName, platform);
+  }
+  return context.resolveRequest(context, moduleName, platform);
+};
+
+module.exports = withUniwindConfig(config, {
+  cssEntryFile: './src/styles/global.css',
+  dtsFile: './uniwind-types.d.ts',
+});

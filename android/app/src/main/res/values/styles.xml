@@ -2,8 +2,17 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
+        <item name="android:datePickerDialogTheme">@style/PurpleDatePickerDialog</item>
+        <item name="android:colorAccent">@color/purple_600</item>
+        <item name="colorAccent">@color/purple_600</item>
+        <item name="colorPrimary">@color/purple_600</item>
+    </style>
+
+    <style name="PurpleDatePickerDialog" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:colorAccent">@color/purple_600</item>
+        <item name="android:colorPrimary">@color/purple_600</item>
+        <item name="android:colorControlActivated">@color/purple_600</item>
     </style>
 
 </resources>
