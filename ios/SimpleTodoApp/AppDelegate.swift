@@ -23,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     window = UIWindow(frame: UIScreen.main.bounds)
 
+    // Keep the native launch screen visible briefly on startup.
+    Thread.sleep(forTimeInterval: 2.0)
+
     factory.startReactNative(
       withModuleName: "SimpleTodoApp",
       in: window,
