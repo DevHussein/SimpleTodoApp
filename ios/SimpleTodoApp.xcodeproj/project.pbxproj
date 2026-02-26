@@ -106,9 +106,9 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SimpleTodoApp" */;
 			buildPhases = (
 				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				4FB6DDFA2F4FF15800363CC1 /* Sync Version from package.json */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
-				4FB6DDFA2F4FF15800363CC1 /* Sync Version from package.json */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
@@ -223,7 +223,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Get the version from package.json using node\nPACKAGE_VERSION=$(node -p \"require('../package.json').version\")\n\n# Update the Info.plist with the version\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $PACKAGE_VERSION\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\n# Optional: Sync Build Number (CFBundleVersion) too\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $PACKAGE_VERSION\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\necho \"Synced version $PACKAGE_VERSION to Info.plist\"\n";
+			shellScript = "# 1. Get the version from package.json\nPACKAGE_VERSION=$(node -p \"require('../package.json').version\")\necho \"✅ Version from package.json: $PACKAGE_VERSION\"\n\n# 2. Path to your ACTUAL Info.plist (Update folder name if needed)\n# Since your project is 'SimpleTodoApp', the path is usually:\nSRC_PLIST=\"${PROJECT_DIR}/SimpleTodoApp/Info.plist\"\n\n# 3. Update the source file directly\nif [ -f \"$SRC_PLIST\" ]; then\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $PACKAGE_VERSION\" \"$SRC_PLIST\"\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $PACKAGE_VERSION\" \"$SRC_PLIST\"\n    echo \"🚀 Successfully synced to Source Info.plist\"\nelse\n    echo \"❌ Error: Could not find Info.plist at $SRC_PLIST\"\n    exit 1\nfi\n";
 		};
 		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -288,7 +288,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SimpleTodoApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
@@ -296,7 +295,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -316,14 +314,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = SimpleTodoApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

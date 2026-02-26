@@ -5,7 +5,7 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { HeroUINativeProvider, Spinner } from "heroui-native";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { I18nextProvider } from "react-i18next";
 import { StatusBar, Text, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -86,22 +86,29 @@ const AppContent = () => {
 	const setUser = useAuthStore((state) => state.setUser);
 
 	const { data, isError, isPending, isSuccess } = useCurrentUserQuery();
+	const splashStartedAt = useRef(Date.now());
 
 	useEffect(() => {
 		if (isPending) {
-			setBootstrapping(true);
 			return;
 		}
 
-		if (isSuccess) {
-			setUser(data ?? null);
-		}
+		const elapsed = Date.now() - splashStartedAt.current;
+		const remaining = Math.max(0, 2000 - elapsed);
 
-		if (isError) {
-			setUser(null);
-		}
+		const timer = setTimeout(() => {
+			if (isSuccess) {
+				setUser(data ?? null);
+			}
 
-		setBootstrapping(false);
+			if (isError) {
+				setUser(null);
+			}
+
+			setBootstrapping(false);
+		}, remaining);
+
+		return () => clearTimeout(timer);
 	}, [data, isError, isPending, isSuccess, setBootstrapping, setUser]);
 
 	if (isBootstrapping) {
