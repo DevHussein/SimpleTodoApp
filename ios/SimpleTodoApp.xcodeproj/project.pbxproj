@@ -108,6 +108,7 @@
 				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
+				4FB6DDFA2F4FF15800363CC1 /* Sync Version from package.json */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
@@ -205,6 +206,25 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SimpleTodoApp/Pods-SimpleTodoApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4FB6DDFA2F4FF15800363CC1 /* Sync Version from package.json */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Sync Version from package.json";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Get the version from package.json using node\nPACKAGE_VERSION=$(node -p \"require('../package.json').version\")\n\n# Update the Info.plist with the version\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $PACKAGE_VERSION\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\n# Optional: Sync Build Number (CFBundleVersion) too\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $PACKAGE_VERSION\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\necho \"Synced version $PACKAGE_VERSION to Info.plist\"\n";
+		};
 		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -276,7 +296,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -303,7 +323,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
