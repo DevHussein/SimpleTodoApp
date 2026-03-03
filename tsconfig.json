@@ -1,8 +1,21 @@
 {
   "extends": "./node_modules/@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "types": ["jest", "uniwind/types"]
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.d.ts"],
-  "exclude": ["**/node_modules", "**/Pods"]
+  "include": [
+    "./src/**/*.ts", 
+    "./src/**/*.tsx", 
+    "./src/**/*.d.ts"
+  ],
+  "exclude": [
+    "./node_modules", 
+    "**/node_modules", 
+    "**/Pods", 
+    "dist"
+  ]
 }
