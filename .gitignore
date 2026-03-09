@@ -45,6 +45,8 @@ yarn-error.log
 .env
 .env.local
 !.env.example
+sentry.properties
+**/sentry.properties
 
 # fastlane
 #
