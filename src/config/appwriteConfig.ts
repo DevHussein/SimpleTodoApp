@@ -31,6 +31,8 @@ export const isAppwriteConfigured = (): boolean => {
     appwriteConfig.projectId.length > 0 &&
     appwriteConfig.databaseId.length > 0 &&
     appwriteConfig.todosCollectionId.length > 0 &&
-    !Object.values(appwriteConfig).some(value => value.startsWith('YOUR_'))
+    !Object.values(appwriteConfig).some(
+      value => typeof value === 'string' && value.startsWith('YOUR_')
+    )
   );
 };
