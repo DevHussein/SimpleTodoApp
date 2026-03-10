@@ -35,6 +35,7 @@ export type ListTodosPageResult = {
 
 type RealtimeUnsubscribe = () => void;
 const shouldLogTodoApi = __DEV__;
+const RETRYABLE_REALTIME_ERROR = 'INVALID_STATE_ERR';
 
 const assertAppwriteConfigured = () => {
   if (!isAppwriteConfigured()) {
@@ -118,14 +119,46 @@ export const todoService = {
       return () => {};
     }
 
-    logTodoApi('subscribeToTodos subscribed', {
-      channel: getTodosRealtimeChannel(),
-    });
+    const channel = getTodosRealtimeChannel();
+    let unsubscribe: RealtimeUnsubscribe | undefined;
+    let isDisposed = false;
 
-    return appwriteClient.subscribe([getTodosRealtimeChannel()], () => {
-      logTodoApi('subscribeToTodos event received');
-      onChange();
-    });
+    const subscribe = (attempt: number): void => {
+      if (isDisposed) {
+        return;
+      }
+
+      logTodoApi('subscribeToTodos subscribed', { channel, attempt });
+
+      try {
+        unsubscribe = appwriteClient.subscribe([channel], () => {
+          logTodoApi('subscribeToTodos event received');
+          onChange();
+        });
+      } catch (error) {
+        const errorMessage = getErrorMessage(error);
+
+        // Appwrite realtime can fail transiently during rapid mount/unmount in development.
+        if (errorMessage.includes(RETRYABLE_REALTIME_ERROR) && attempt < 2) {
+          setTimeout(() => subscribe(attempt + 1), 250 * (attempt + 1));
+          return;
+        }
+
+        logTodoApi('subscribeToTodos failed', {
+          channel,
+          attempt,
+          error: errorMessage,
+        });
+      }
+    };
+
+    subscribe(0);
+
+    return () => {
+      isDisposed = true;
+      unsubscribe?.();
+      unsubscribe = undefined;
+    };
   },
 
   async listTodosPage(input: ListTodosPageInput): Promise<ListTodosPageResult> {

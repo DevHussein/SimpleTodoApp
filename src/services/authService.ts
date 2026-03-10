@@ -15,6 +15,7 @@ export type UpdateProfileInput = {
 };
 
 type RealtimeUnsubscribe = () => void;
+const RETRYABLE_REALTIME_ERROR = 'INVALID_STATE_ERR';
 
 const assertAppwriteConfigured = () => {
   if (!isAppwriteConfigured()) {
@@ -64,9 +65,44 @@ export const authService = {
       return () => {};
     }
 
-    return appwriteClient.subscribe('account', () => {
-      onChange();
-    });
+    let unsubscribe: RealtimeUnsubscribe | undefined;
+    let isDisposed = false;
+
+    const subscribe = (attempt: number): void => {
+      if (isDisposed) {
+        return;
+      }
+
+      try {
+        unsubscribe = appwriteClient.subscribe('account', () => {
+          onChange();
+        });
+      } catch (error) {
+        const errorMessage =
+          error instanceof Error ? error.message : String(error);
+
+        // Appwrite realtime can fail transiently during rapid mount/unmount in development.
+        if (errorMessage.includes(RETRYABLE_REALTIME_ERROR) && attempt < 2) {
+          setTimeout(() => subscribe(attempt + 1), 250 * (attempt + 1));
+          return;
+        }
+
+        if (__DEV__) {
+          console.warn(
+            '[authService] Failed to subscribe to account realtime events.',
+            error
+          );
+        }
+      }
+    };
+
+    subscribe(0);
+
+    return () => {
+      isDisposed = true;
+      unsubscribe?.();
+      unsubscribe = undefined;
+    };
   },
 
   async updateProfile(payload: UpdateProfileInput): Promise<AppwriteUser> {

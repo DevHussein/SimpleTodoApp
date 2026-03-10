@@ -1,10 +1,15 @@
 import { Account, Client, Databases } from 'react-native-appwrite';
 import { appwriteConfig } from '../config/appwriteConfig';
 
-export const appwriteClient = new Client()
+const client = new Client()
   .setEndpoint(appwriteConfig.endpoint)
-  .setEndpointRealtime(appwriteConfig.realtimeEndpoint)
   .setProject(appwriteConfig.projectId);
+
+if (appwriteConfig.realtimeEndpoint) {
+  client.setEndpointRealtime(appwriteConfig.realtimeEndpoint);
+}
+
+export const appwriteClient = client;
 
 export const appwriteAccount = new Account(appwriteClient);
 export const appwriteDatabases = new Databases(appwriteClient);

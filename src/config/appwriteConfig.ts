@@ -8,33 +8,18 @@ import {
 
 export type AppwriteConfig = {
   endpoint: string;
-  realtimeEndpoint: string;
+  realtimeEndpoint: string | null;
   projectId: string;
   databaseId: string;
   todosCollectionId: string;
 };
 
-const getRealtimeEndpoint = (endpoint: string): string => {
-  if (APPWRITE_REALTIME_ENDPOINT?.length) {
-    return APPWRITE_REALTIME_ENDPOINT;
-  }
-
-  if (endpoint.startsWith('https://')) {
-    return endpoint.replace('https://', 'wss://');
-  }
-
-  if (endpoint.startsWith('http://')) {
-    return endpoint.replace('http://', 'ws://');
-  }
-
-  return endpoint;
-};
-
 const endpoint = APPWRITE_ENDPOINT ?? 'https://fra.cloud.appwrite.io/v1';
+const realtimeEndpoint = APPWRITE_REALTIME_ENDPOINT?.trim() || null;
 
 export const appwriteConfig: AppwriteConfig = {
   endpoint,
-  realtimeEndpoint: getRealtimeEndpoint(endpoint),
+  realtimeEndpoint,
   projectId: APPWRITE_PROJECT_ID ?? '',
   databaseId: APPWRITE_DATABASE_ID ?? '',
   todosCollectionId: APPWRITE_TODOS_COLLECTION_ID ?? 'todos',

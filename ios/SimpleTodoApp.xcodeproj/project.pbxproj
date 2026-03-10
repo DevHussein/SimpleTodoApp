@@ -194,9 +194,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SimpleTodoApp/Pods-SimpleTodoApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SimpleTodoApp/Pods-SimpleTodoApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -221,6 +225,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# 1. Get the version from package.json\nPACKAGE_VERSION=$(node -p \"require('../package.json').version\")\necho \"✅ Version from package.json: $PACKAGE_VERSION\"\n\n# 2. Path to your ACTUAL Info.plist (Update folder name if needed)\n# Since your project is 'SimpleTodoApp', the path is usually:\nSRC_PLIST=\"${PROJECT_DIR}/SimpleTodoApp/Info.plist\"\n\n# 3. Update the source file directly\nif [ -f \"$SRC_PLIST\" ]; then\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $PACKAGE_VERSION\" \"$SRC_PLIST\"\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $PACKAGE_VERSION\" \"$SRC_PLIST\"\n    echo \"🚀 Successfully synced to Source Info.plist\"\nelse\n    echo \"❌ Error: Could not find Info.plist at $SRC_PLIST\"\n    exit 1\nfi\n";
+		};
+		72093DA3718F45DC924F7711 /* Upload Debug Symbols to Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload Debug Symbols to Sentry";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh ../node_modules/@sentry/react-native/scripts/sentry-xcode-debug-files.sh";
 		};
 		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -252,28 +270,18 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SimpleTodoApp/Pods-SimpleTodoApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SimpleTodoApp/Pods-SimpleTodoApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SimpleTodoApp/Pods-SimpleTodoApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		72093DA3718F45DC924F7711 /* Upload Debug Symbols to Sentry */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			name = "Upload Debug Symbols to Sentry";
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			shellPath = /bin/sh;
-			shellScript = "/bin/sh ../node_modules/@sentry/react-native/scripts/sentry-xcode-debug-files.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -296,6 +304,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				ENABLE_BITCODE = NO;
+				HERMES_CLI_PATH = "$(SRCROOT)/../node_modules/hermes-compiler/hermesc/osx-bin/hermesc";
 				INFOPLIST_FILE = SimpleTodoApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Simple Todo App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -323,6 +332,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				HERMES_CLI_PATH = "$(SRCROOT)/../node_modules/hermes-compiler/hermesc/osx-bin/hermesc";
 				INFOPLIST_FILE = SimpleTodoApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Simple Todo App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
