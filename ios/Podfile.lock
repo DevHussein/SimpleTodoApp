@@ -1471,8 +1471,8 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - react-native-vector-icons-evil-icons (12.4.0)
-  - react-native-vector-icons-fontawesome6 (12.3.0)
+  - react-native-vector-icons-evil-icons (12.5.0)
+  - react-native-vector-icons-fontawesome6 (12.4.0)
   - React-NativeModulesApple (0.84.0):
     - hermes-engine
     - React-callinvoker
@@ -1902,7 +1902,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - RNGestureHandler (2.30.0):
+  - RNGestureHandler (2.31.2):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -1924,32 +1924,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - RNReanimated (4.2.2):
-    - hermes-engine
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-Core-prebuilt
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-hermes
-    - React-ImageManager
-    - React-jsi
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-renderercss
-    - React-rendererdebug
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - ReactNativeDependencies
-    - RNReanimated/reanimated (= 4.2.2)
-    - RNWorklets
-    - Yoga
-  - RNReanimated/reanimated (4.2.2):
+  - RNReanimated (4.2.3):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -1971,10 +1946,35 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
-    - RNReanimated/reanimated/apple (= 4.2.2)
+    - RNReanimated/reanimated (= 4.2.3)
     - RNWorklets
     - Yoga
-  - RNReanimated/reanimated/apple (4.2.2):
+  - RNReanimated/reanimated (4.2.3):
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - RNReanimated/reanimated/apple (= 4.2.3)
+    - RNWorklets
+    - Yoga
+  - RNReanimated/reanimated/apple (4.2.3):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2045,7 +2045,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - RNSentry (8.3.0):
+  - RNSentry (8.12.0):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2067,7 +2067,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
-    - Sentry (= 9.6.0)
+    - Sentry (= 9.13.0)
     - Yoga
   - RNSVG (15.15.3):
     - hermes-engine
@@ -2185,9 +2185,9 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - Sentry (9.6.0):
-    - Sentry/Core (= 9.6.0)
-  - Sentry/Core (9.6.0)
+  - Sentry (9.13.0):
+    - Sentry/Core (= 9.13.0)
+  - Sentry/Core (9.13.0)
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -2457,7 +2457,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FBLazyVector: c12d2108050e27952983d565a232f6f7b1ad5e69
-  hermes-engine: 1df55533635c4589a9249c1e7c5e7dc717067106
+  hermes-engine: 3523b51565a13add974aa3010852b679fdaf2d70
   RCTDeprecation: 3280799c14232a56e5a44f92981a8ee33bc69fd9
   RCTRequired: 9854a51b0f65ccf43ea0b744df4d70fce339db32
   RCTSwiftUI: 96986e49a4fdc2c2103929dee2641e1b57edf33d
@@ -2466,7 +2466,7 @@ SPEC CHECKSUMS:
   React: 7ef36630d07638043a134a7dd2ec17e0be10fc3c
   React-callinvoker: af4e8fe1d60ab63dd8d74c2a68988064c2848954
   React-Core: c0fb1df65eb0ed7a8633841831f05f93c3eb3aff
-  React-Core-prebuilt: 7d1d3856bfd20145f0bf1e3e51f2d8613d9b9f56
+  React-Core-prebuilt: ffb15dc571275c48cba71834ef8c78af3e59a499
   React-CoreModules: 7dfe7962360355f1547c85ab52e1fc4b57f17127
   React-cxxreact: 9e9c7f1710bc58abebf924813b5e825b99adb8e5
   React-debug: 38389b86e3570558ec73dd4cbc0cd2f2eec47a51
@@ -2496,8 +2496,8 @@ SPEC CHECKSUMS:
   React-microtasksnativemodule: ddaf25a8d69f694bc880fb6055e34d79f1d50138
   react-native-restart: 7595693413fe3ca15893702f2c8306c62a708162
   react-native-safe-area-context: 53f796cb6c814661bbe99fbdfd0585d07b996cdd
-  react-native-vector-icons-evil-icons: 5160157a6b05251812d4b74702efc84130fe52a3
-  react-native-vector-icons-fontawesome6: 1a73ea16a698f70851ad47e94521a99499e8e974
+  react-native-vector-icons-evil-icons: 468d002d338e0d5020f580473b8e2f4c3b5e4476
+  react-native-vector-icons-fontawesome6: 4818cfee1b9283e57f5476778b21bdb490a08941
   React-NativeModulesApple: 14a8919451154ede904f2bca84b27703a09028ba
   React-networking: 46c0037f9202c1919493b78662a47cbe13022fdd
   React-oscompat: b924b8609d06899f00ab1aa813b0cde9c5e12771
@@ -2531,16 +2531,16 @@ SPEC CHECKSUMS:
   ReactAppDependencyProvider: 625d2f6d9d5ef01acc9dfe2b5385504bbffd2ad0
   ReactCodegen: 27937747ddc743fcb66a8dc19e8edf60188d94cc
   ReactCommon: cc0e38600f82487c5fe5d29150abb6fa9d981986
-  ReactNativeDependencies: a2ada557cca5077509465b65ff769c6ca7d7028a
+  ReactNativeDependencies: 14537a62cbaefab2f1439a4f51814e7486745304
   RNCAsyncStorage: e85a99325df9eb0191a6ee2b2a842644c7eb29f4
   RNDateTimePicker: 5e0666de98f1edfac67ee7dde6be8a5415e487a0
-  RNGestureHandler: 6d378fd1aa991c7ab62a4215ee6cc417895a6954
-  RNReanimated: 0cb8806c6ef2b0f6404e1d0f3ce8ac8177984cf5
+  RNGestureHandler: bd2518f9ea3458cb42cc677bdcbc3fb1ea520bd5
+  RNReanimated: bbb486670570db6c78831113191a4eb8d5eb79f0
   RNScreens: fb11b7412bcbdc0ffafcaf9174938d998d4e2bc4
-  RNSentry: f47bfdcf86eac3723a62b07cfb46712e9bffa7eb
+  RNSentry: 29ec095873f203e37a114e4b2a114010eb278f84
   RNSVG: 13970bfde0ea9c9e10e01ab0d7b4a6cde11fca1b
   RNWorklets: 0373848914c7751c4e0ca573ebbe38f489026a62
-  Sentry: 9e8d102abb153ebd2b6f3ecb4057c57c57b1d6a7
+  Sentry: 5c3f67235d4c16fcfab43158a8c1502a18fece9a
   Yoga: 772166513f9cd2d61a6251d0dacbbfaa5b537479
 
 PODFILE CHECKSUM: 52faba08a26c11224039e4a4498b14dcf26f9657
